@@ -334,16 +334,23 @@ void ManageForcedExits()
    bool dailyLoss=(g_dailyStartBalance>0 && pnl<=-g_dailyStartBalance*InpDailyLossLimitPercent/100.0);
    if(dailyLoss || (InpForceLondonCloseExit && IsLondonCloseOrLater()))
       CloseAllOurPositions();
-   if(g_bias!=0)
+   // Close all Scalp positions when any Scalp position's own 4H-target TP is touched.
+   double bid=SymbolInfoDouble(InpTradeSymbol,SYMBOL_BID), ask=SymbolInfoDouble(InpTradeSymbol,SYMBOL_ASK);
+   bool targetTouched=false;
+   for(int i=PositionsTotal()-1;i>=0;i--)
    {
-      double target;
-      if(GetTarget(g_bias,target))
+      ulong ticket=PositionGetTicket(i);
+      if(ticket==0 || !SelectOurPosition(ticket)) continue;
+      double tp=PositionGetDouble(POSITION_TP);
+      if(tp<=0) continue;
+      ENUM_POSITION_TYPE pt=(ENUM_POSITION_TYPE)PositionGetInteger(POSITION_TYPE);
+      if((pt==POSITION_TYPE_BUY && bid>=tp) || (pt==POSITION_TYPE_SELL && ask<=tp))
       {
-         double bid=SymbolInfoDouble(InpTradeSymbol,SYMBOL_BID), ask=SymbolInfoDouble(InpTradeSymbol,SYMBOL_ASK);
-         bool touched=(g_bias>0?bid>=target:ask<=target);
-         if(touched) CloseAllOurPositions();
+         targetTouched=true;
+         break;
       }
    }
+   if(targetTouched) CloseAllOurPositions();
 }
 bool AdjustStops(int dir,double entry,double &sl,double &tp)
 {
@@ -477,8 +484,19 @@ void ProcessM1()
 }
 void TryEntry()
 {
-   if(g_state!=ST_WAIT_RETRACE || g_sweepDir==0) return;
-   if(g_bias==0 || g_bias!=g_sweepDir) return;
+   if(g_state==ST_IDLE || g_sweepDir==0) return;
+   int age=iBarShift(InpTradeSymbol,PERIOD_M15,g_sweepTime,false);
+   if(age<0 || age>InpSetupExpiryM15Bars)
+   {
+      g_state=ST_IDLE; g_sweepDir=0; g_setupTime=0; g_fvgTime=0;
+      return;
+   }
+   if(g_bias==0 || g_bias!=g_sweepDir)
+   {
+      g_state=ST_IDLE; g_sweepDir=0; g_setupTime=0; g_fvgTime=0;
+      return;
+   }
+   if(g_state!=ST_WAIT_RETRACE) return;
    double target;
    if(!GetTarget(g_bias,target)) return;
    double ce=(g_fvgLow+g_fvgHigh)/2.0;
