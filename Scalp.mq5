@@ -5,7 +5,7 @@
 #include <Trade/Trade.mqh>
 CTrade trade;
 
-input string InpTradeSymbol = "XAUUSD";
+input string InpTradeSymbol = "XAUUSDb"; // Must exactly match this broker symbol
 input ulong InpMagic = 26101701;
 input double InpInitialAccountBalance = 0.0; // Set explicitly before testing; zero blocks entries
 input double InpRiskPercent = 0.50;
