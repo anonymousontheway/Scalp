@@ -17,6 +17,7 @@ This document defines the strategy the user says corresponds to the supplied bac
 - **Breaker Block, based on the user's explanation:** the last OB that drove price toward liquidity and was subsequently invalidated.
 - **Mitigation Block, based on the user's explanation:** an OB located on the opposite side of an MMXM; support or resistance is expected from this zone.
 - **Mitigation Block entry requirement:** price must return to the Mitigation Block zone before entry; merely identifying the zone is not sufficient.
+- **Mitigation Block entry trigger:** once price returns to the Mitigation Block zone, enter directly without waiting for an additional M1 OB/Breaker or SMT confirmation, subject to the strategy's other mandatory filters (including mandatory H4 SMT).
 - The exact mechanical rules for what qualifies as a large move, how liquidity-taking is identified, how multi-candle OB boundaries are drawn, how an OB is considered invalidated, and how an MMXM/opposite side is detected remain to be confirmed.
 
 ## Strategy rules supplied directly by the user
