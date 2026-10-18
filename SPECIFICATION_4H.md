@@ -4,6 +4,13 @@
 
 This document defines the strategy the user says corresponds to the supplied backtest examples and trade journal. It is a separate development direction from the previous Scalp strategy. Do not assume the existing `Scalp.mq5` implements this strategy, and do not silently reuse its M15 Sweep/MSS rules as mandatory conditions. Keep the old EA as a separate legacy prototype.
 
+## Confirmed definitions from follow-up answers
+
+- **H4 Manipulation Candle:** price breaks a previous high or low, then the candle closes back inside the prior range.
+- **H4 SMT pair:** XAUUSD versus XAGUSD.
+- **SMT definition:** one instrument fails to confirm the corresponding high/low made by the other instrument (non-confirmation of a corresponding swing high/low).
+- Whether H4 SMT is a hard entry requirement or a confluence filter is still unanswered and must not be assumed.
+
 ## Strategy rules supplied directly by the user
 
 ### H4
