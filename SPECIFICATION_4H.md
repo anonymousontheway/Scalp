@@ -13,6 +13,7 @@ This document defines the strategy the user says corresponds to the supplied bac
 - **H4 SMT pair:** XAUUSD versus XAGUSD.
 - **SMT definition:** one instrument fails to confirm the corresponding high/low made by the other instrument (non-confirmation of a corresponding swing high/low).
 - **H4 SMT is mandatory for entry.** If the H4 SMT condition is absent, no entry is allowed.
+- **M1 Order Block (OB):** the last opposite-direction candle before a strong move that breaks market structure. Entry is considered when price returns to the OB zone. The exact objective criteria for “strong move,” structure break, OB boundaries, and entry trigger still need to be defined.
 
 ## Strategy rules supplied directly by the user
 
