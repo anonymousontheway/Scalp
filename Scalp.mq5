@@ -1,5 +1,5 @@
 #property strict
-#property version   "0.10"
+#property version   "0.100"
 #property description "Scalp ICT baseline EA - Strategy Tester prototype; validate before live use."
 
 #include <Trade/Trade.mqh>
