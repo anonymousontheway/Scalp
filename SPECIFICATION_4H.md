@@ -5,7 +5,8 @@
 This document defines the strategy the user says corresponds to the supplied backtest examples and trade journal. It is a separate development direction from the previous Scalp strategy. Do not assume the existing `Scalp.mq5` implements this strategy, and do not silently reuse its M15 Sweep/MSS rules as mandatory conditions. Keep the old EA as a separate legacy prototype.
 
 ## Confirmed definitions from follow-up answers
-- **P/D means Premium / Discount:** determine whether price is in the upper or lower half of the relevant dealing range. The exact range boundaries and dealing-range selection rule are still to be defined.
+- **P/D means Premium / Discount:** determine whether price is in the upper or lower half of the dealing range.
+- **Dealing Range selection:** use the larger, valid dealing range identified from H4 market structure. The exact mechanical criteria for selecting its boundaries remain to be defined.
 
 - **H4 Manipulation Candle:** price breaks a previous high or low, then the candle closes back inside the prior range.
 - **H4 SMT pair:** XAUUSD versus XAGUSD.
