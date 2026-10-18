@@ -13,7 +13,10 @@ This document defines the strategy the user says corresponds to the supplied bac
 - **H4 SMT pair:** XAUUSD versus XAGUSD.
 - **SMT definition:** one instrument fails to confirm the corresponding high/low made by the other instrument (non-confirmation of a corresponding swing high/low).
 - **H4 SMT is mandatory for entry.** If the H4 SMT condition is absent, no entry is allowed.
-- **M1 Order Block (OB):** the last opposite-direction candle before a strong move that breaks market structure. Entry is considered when price returns to the OB zone. The exact objective criteria for “strong move,” structure break, OB boundaries, and entry trigger still need to be defined.
+- **Order Block (OB), based on the user's explanation:** for a buy, the last bearish candle before a large bullish move; for a sell, the last bullish candle before a large bearish move. Only OBs that have taken liquidity are relevant. An OB may consist of one candle or a group of candles.
+- **Breaker Block, based on the user's explanation:** the last OB that drove price toward liquidity and was subsequently invalidated.
+- **Mitigation Block, based on the user's explanation:** an OB located on the opposite side of an MMXM; support or resistance is expected from this zone.
+- The exact mechanical rules for what qualifies as a large move, how liquidity-taking is identified, how multi-candle OB boundaries are drawn, how an OB is considered invalidated, and how an MMXM/opposite side is detected remain to be confirmed.
 
 ## Strategy rules supplied directly by the user
 
