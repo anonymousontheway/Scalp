@@ -2,122 +2,126 @@
 
 ## Purpose and separation from Scalp
 
-This document defines a separate strategy based on the user's 4H / 15M / 1M notes and trade journal. It is a replacement direction for future development, not a claim that the existing `Scalp.mq5` already implements these rules. Keep the existing Scalp EA available as a legacy prototype until the new EA is separately implemented and tested.
+This document defines the strategy the user says corresponds to the supplied backtest examples and trade journal. It is a separate development direction from the previous Scalp strategy. Do not assume the existing `Scalp.mq5` implements this strategy, and do not silently reuse its M15 Sweep/MSS rules as mandatory conditions. Keep the old EA as a separate legacy prototype.
 
-## Source-derived framework
+## Strategy rules supplied directly by the user
 
-The user's `4H.pdf` specifies:
+### H4
+- Look for a **manipulation candle**.
+- Look for **SMT**.
+- Look for **P/D**.
+- Target **liquidity or PL/DH**.
+- Notice the **time** and the **open/close of the H4 candle**.
 
-- **H4:** Look for IRL/ERL or any PD Array; look for SMT.
-- **M15:** Look for Purge; look for SMT; wait for MSS.
-- **M1:** Wait for the M15 MSS; look for OB/MT; look for SMT.
+### M1
+- Look for **SMT**.
+- Look for **MT/OB**.
+- Look for **MMXM**.
+- Consider **midnight or Proximity** for entry.
+- Trade **after news and 8:30**.
+- Check the **opposite pair** too, and determine whether it has hit its TP or not.
 
-The user's trade journal and notes add these observations:
+These are the user's terms. Do not silently expand or redefine P/D, PL/DH, Proximity, MT, or MMXM. Their exact mechanical definitions must be agreed from the user's examples or later instructions before being encoded as hard entry rules.
 
-- One losing example notes that 4H SMT was absent and that the setup was overtrading.
-- One losing example notes that news and 4H SMT were missed.
-- One note says not to enter after silver has already reached its target.
-- One note says to pay attention to the target (PL/PH).
-- One note says an entry was too late.
-- A note says a 4H manipulation candle was used and price was expected to distribute toward DOL.
-- Some examples use the New York Kill Zone; some are marked London Kill Zone or London Close Kill Zone.
-- The journal includes both continuation and reversal examples.
-- The examples include XAUUSD and one GBPAUD example. The primary EA market should be explicitly configured; do not assume every market is validated by the gold examples.
+## Notes from the provided journal/images
 
-These notes are evidence from a small, manually recorded sample, not proof of profitability or universal rules.
+The supplied trade notes include observations such as:
+- Missing H4 SMT was noted in a losing example.
+- News and H4 SMT were noted as things missed in a losing example.
+- A note says not to enter after silver has already reached its target.
+- A note says to notice the target (PL/PH).
+- A note identifies an entry as too late.
+- One note describes a 4H manipulation candle and expected distribution toward DOL.
+- Examples refer to NY KZ, LO KZ, and LO Close KZ.
+- The journal contains both continuation and reversal examples.
+- The images include XAUUSD examples and at least one GBPAUD example. Do not assume the gold examples validate all symbols.
 
-## Strategy sequence to implement
+These notes are examples and observations, not proof of profitability or a universal rule by themselves.
 
-### 1. H4 context (setup qualification)
+## Strategy flow to investigate and implement
 
-1. Detect a relevant, confirmed H4 PD Array and/or IRL/ERL target.
-2. Identify the intended draw on liquidity (DOL) and record the relevant prior high/low (including PL/PH where applicable).
-3. Evaluate SMT using the selected comparison instrument. For the user's gold setup, the intended comparison appears to be XAUUSD versus XAGUSD, but the exact swing-matching algorithm must be documented in code and tested.
-4. Preserve setup direction as either reversal or continuation; do not merge these into one signal without recording which type qualified.
-5. A setup with unclear target/path is invalid and must not enter.
-6. The journal suggests H4 SMT is an important quality condition, particularly to avoid weak/overtraded setups. Whether it is a hard requirement for every continuation setup remains an explicit strategy decision; do not silently make it mandatory for all setups.
+1. **H4 context:** identify the manipulation candle, SMT and P/D context; mark the liquidity target or PL/DH target; record H4 candle open/close times and prices.
+2. **M1 entry context:** evaluate SMT, MT/OB and MMXM as specified by the user's eventual mechanical definitions.
+3. **Timing:** evaluate the user's midnight or Proximity entry context, and the rule to trade after news and 8:30. Do not assume the timezone or exact news waiting interval until specified.
+4. **Opposite pair:** check the relevant opposite/comparison pair and whether its corresponding TP has already been reached before allowing the setup.
+5. **Target state:** do not initiate an entry if the intended target has already been reached or the intended path is no longer valid, consistent with the user's target and opposite-pair notes.
+6. **No chasing:** the journal includes an example described as too late. The EA must have a defined, testable entry window and log when a setup is missed/late; the exact cutoff still needs definition.
+7. Record the setup classification (continuation/reversal) rather than combining different models invisibly.
 
-### 2. M15 trigger
+**Important:** The user's latest description does not mention M15. Do not add a mandatory M15 Purge/MSS stage from the older Scalp model unless the user explicitly asks for it for this strategy.
 
-1. After an H4 context is valid, wait for a Purge/liquidity sweep in the relevant direction.
-2. Evaluate M15 SMT as additional context.
-3. Wait for a confirmed M15 Market Structure Shift (MSS) after the Purge. Use closed candles for confirmation.
-4. Do not enter before the M15 MSS.
-5. Expire the setup if it becomes stale or the H4 context/target is invalidated. Expiry must be an input and logged.
+## News and timing
 
-### 3. M1 entry
-
-1. Only evaluate entry after the relevant M15 MSS is confirmed.
-2. Search for the user's stated OB/MT entry model. “MT” is not defined in the supplied PDF/journal; do not invent a definition. Implement OB first only if its exact mechanical definition is written down and expose MT as a pending extension until clarified.
-3. Evaluate M1 SMT as confluence according to the eventual explicit rule.
-4. Enter only at a defined OB/MT trigger; no chasing after price has left the entry zone.
-5. Before sending an order, verify the original H4 target remains available and has not already been reached. Do not enter after the relevant target has been hit, including the noted case where silver has already reached its target if that is part of the selected SMT rule.
-6. Record the exact rejection reason whenever a potential setup does not become a trade.
-
-## Session and news observations
-
-- The trade journal contains NY KZ, LO KZ, and LO Close KZ examples. One note questions taking trades during London and another says an entry was too late.
-- Sessions should be configurable and evaluated separately in backtests; do not infer that all London trades are prohibited from a single note.
-- News mattered in at least one noted loss, and another note explicitly says no news was present. The source material does not specify an authoritative news feed or a complete blackout window.
-- Until a reliable news feed and exact rule are implemented, news filtering must be clearly marked as unavailable/disabled; never claim that news is being filtered when it is not.
-- Any timezone conversion must account for New York DST and broker server time.
+- The user says: “Trade after news and 8:30.” This indicates post-news / 8:30 timing is relevant; it does not yet define an exact number of minutes before/after news or whether every news event is included.
+- The journal contains NY KZ, LO KZ and LO Close KZ references. These should be treated as observations for testing, not a universal session restriction without confirmation.
+- Record H4 candle open/close times and the timezone used. New York DST and broker server time must be handled explicitly if New York time is intended.
+- Do not claim a news filter is active unless the EA has a reliable, implemented news source and tested event-time logic.
 
 ## Risk and trade management
 
-Carry forward the existing project's risk controls as configurable safeguards unless the user explicitly changes them:
+Use these as configurable safeguards carried forward from the project unless the user changes them:
 - Base risk: 0.50% balance per trade.
 - Recovery risk below explicitly configured initial balance: 0.25%.
 - Maximum aggregate open risk for EA-owned positions: 2.0%.
 - Maximum 3 successful entries per broker-server day.
-- Daily loss limit: 2.0%; stop entries and close EA-owned positions according to the existing risk policy.
+- Daily loss limit: 2.0%; stop entries and close EA-owned positions according to the final risk policy.
 - Daily profit limit: 2.0%; stop new entries.
-- Only manage positions matching the EA's symbol and Magic Number.
-- Use broker-aware volume normalization and calculate monetary risk before order submission.
-- Initial account balance must be explicitly set; zero must visibly block entries with a clear log message.
-- A target touch should close the strategy's owned position(s) as specified by the final implementation and clear stale setup state.
+- Manage only positions matching the EA's symbol and Magic Number.
+- Normalize volume using broker limits and calculate monetary risk before order submission.
+- Initial account balance must be explicitly set; zero must block entries with a clear log message.
 - No live use before compilation and out-of-sample testing.
 
 ## Required diagnostic logging
 
-Every run should log:
-- EA name/version, configured symbol and chart/test symbol.
-- H4 context detected: PD Array, DOL, direction, continuation/reversal classification, H4 SMT result.
-- M15 Purge and SMT result, MSS level/time, setup expiry.
-- M1 OB/MT zone, M1 SMT result, entry eligibility.
-- Explicit reason for every rejected entry (e.g. no H4 PD Array, target unclear/already reached, missing required SMT, no Purge, no MSS, no OB/MT, session blocked, risk invalid, spread too high, order rejected).
+Log each relevant stage so zero trades can be diagnosed:
+- EA name/version, configured symbol and tester symbol.
+- H4 manipulation candle: timestamp, open/close, high/low and why it qualified.
+- H4 SMT and P/D state.
+- Selected liquidity / PL/DH target and whether it has been reached.
+- M1 SMT, MT/OB and MMXM state.
+- Midnight/Proximity state and the exact time basis.
+- News event/time and 8:30 rule evaluation.
+- Opposite-pair state and whether its TP has been reached.
+- Explicit rejection reason for every skipped entry.
 - Order request/result codes and position lifecycle.
 - Daily risk counters and daily P/L.
 
-## Inputs and backtest design
+## Inputs and backtest plan
 
-Expose inputs for:
-- Trade symbol (exact broker symbol, e.g. XAUUSDb where that is the broker's name).
-- SMT comparison symbol and whether comparison data is required.
-- Separate toggles for H4, M15 and M1 SMT use, with the effective hard/soft rule documented.
-- Session windows and New York DST handling.
-- News filter state (only functional if a reliable feed exists).
-- Risk controls and daily limits.
-- Setup expiry, spread/slippage limits and Magic Number.
+Expose configurable inputs for:
+- Exact broker trade symbol and comparison/opposite-pair symbol(s).
+- H4 manipulation-candle definition (once agreed).
+- SMT and P/D definitions/settings (once agreed).
+- MT/OB and MMXM definitions/settings (once agreed).
+- Midnight/Proximity timing and timezone.
+- News source, event importance and waiting interval; disabled with clear status if no reliable source is available.
+- 8:30 timezone and DST handling.
+- Risk controls, daily limits, spread/slippage and Magic Number.
 
-Backtest the new EA separately from Scalp on the same symbol, dates and tick model. Compare:
-- trade count and rejected-setup reasons,
-- net profit, profit factor, expected payoff,
+Run this EA as a separate test from the legacy Scalp EA, using the same symbol, date range and tick model when comparing results. Review:
+- total trades and rejected-setup reasons,
+- net profit, profit factor and expected payoff,
 - maximum balance/equity drawdown,
 - win rate and average R,
-- continuation vs reversal,
-- sessions and news proximity,
-- entry quality and missed/late entries.
-Use out-of-sample periods and avoid selecting parameters solely to fit the supplied examples.
+- results by continuation/reversal and session,
+- news proximity,
+- late/missed entries,
+- cases where the opposite pair had already hit its TP.
 
-## Open definitions that must not be silently guessed
+Use out-of-sample periods; do not optimize only to fit the manually supplied examples.
 
-The supplied notes do not define these mechanically:
-1. Which PD Arrays qualify and how a valid H4 one is selected.
-2. Exact definitions of Purge, M15 MSS, and the required swing points.
-3. Exact SMT algorithm, comparison pair, timeframe and whether SMT is mandatory for reversals, continuations, or both.
-4. The meaning of “MT” in “OB/MT”.
-5. Exact OB selection, mitigation/entry price, invalidation, stop placement and target selection.
-6. Whether news, session windows, and the silver-target rule are hard blockers or optional confluence.
-7. Exact trade management and exit/partial-take-profit rules.
+## Definitions still needed before reliable mechanical implementation
 
-Implement a transparent, testable first version with explicit inputs and diagnostic logs. If a definition is still unresolved, mark it as an assumption or leave that feature disabled rather than presenting it as a source-derived rule.
+The supplied notes do not yet define these mechanically:
+1. Exact meaning and detection rules for “manipulation candle”.
+2. Exact SMT pair, swing-matching rule, timeframe and whether it is a hard requirement.
+3. Exact meaning and selection of “P/D”.
+4. Exact definition of “liquidity or PL/DH” target and target selection priority.
+5. Exact meaning of “MT”, “OB”, “MMXM” and “Proximity”.
+6. What “midnight” means in timezone terms.
+7. Which news events count, what “after news” interval means, and the timezone for 8:30.
+8. Which opposite pair to check for each market and the exact condition for its TP being considered hit.
+9. Stop-loss placement, order-entry price, invalidation, partial exits and final take-profit handling.
+10. Exact cutoff that defines an entry as “too late”.
+
+Do not invent definitions and label them as the user's rules. Use the supplied chart examples to infer candidate definitions only when clearly supported, document each assumption, and keep it configurable until confirmed.
