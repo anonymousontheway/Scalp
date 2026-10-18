@@ -7,7 +7,7 @@ This document defines the strategy the user says corresponds to the supplied bac
 ## Confirmed definitions from follow-up answers
 - **P/D means Premium / Discount:** determine whether price is in the upper or lower half of the dealing range.
 - **Dealing Range selection:** use the larger, valid dealing range identified from H4 market structure. The exact mechanical criteria for selecting its boundaries remain to be defined.
-- **Target clarification:** the target referred to as PL/DH may be the high or low of the previous **H4** candle. How this target is prioritized against other liquidity targets remains to be confirmed.
+- **Target clarification:** the target referred to as PL/DH may be the high or low of the previous **H4** candle. Select by trade direction: a buy targets the previous H4 candle high; a sell targets the previous H4 candle low.
 
 - **H4 Manipulation Candle:** price breaks a previous high or low, then the candle closes back inside the prior range.
 - **H4 SMT pair:** XAUUSD versus XAGUSD.
