@@ -9,7 +9,7 @@ This document defines the strategy the user says corresponds to the supplied bac
 - **H4 Manipulation Candle:** price breaks a previous high or low, then the candle closes back inside the prior range.
 - **H4 SMT pair:** XAUUSD versus XAGUSD.
 - **SMT definition:** one instrument fails to confirm the corresponding high/low made by the other instrument (non-confirmation of a corresponding swing high/low).
-- Whether H4 SMT is a hard entry requirement or a confluence filter is still unanswered and must not be assumed.
+- **H4 SMT is mandatory for entry.** If the H4 SMT condition is absent, no entry is allowed.
 
 ## Strategy rules supplied directly by the user
 
