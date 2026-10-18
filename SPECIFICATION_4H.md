@@ -22,6 +22,25 @@ This document defines the strategy the user says corresponds to the supplied bac
 - **Stop-loss:** place the SL slightly beyond the relevant high/low boundary of the Mitigation Block, accounting for spread. The exact buffer formula is still to be defined.
 - The exact mechanical rules for what qualifies as a large move, how liquidity-taking is identified, how multi-candle OB boundaries are drawn, how an OB is considered invalidated, and how an MMXM/opposite side is detected remain to be confirmed.
 
+## Market model classification: Classic Buy/Sell Model vs MMXM
+
+The user describes two alternative market behaviors/models. The EA must distinguish and record which model is active; do not merge their entry sequences into one generic setup.
+
+### Classic Buy/Sell Model
+1. Wait for MSS.
+2. After MSS, wait for price to return to the relevant OB.
+3. Entry is considered at the OB retest, subject to the other mandatory strategy filters.
+
+### MMXM
+1. Identify the MMXM model.
+2. Wait for MSS.
+3. After MSS, wait for a pullback to the Breaker Block.
+4. Then identify Mitigation Blocks (MTs) and wait for price reaction to those MT zones before entry.
+
+The user's previously confirmed definition remains applicable: price must return to the Mitigation Block zone; identification alone is not enough. For the MMXM path, entry is based on the reaction to MTs after the MSS → Breaker Block pullback sequence. Do not apply the direct-on-touch MT entry rule without considering this newly specified reaction requirement.
+
+The exact mechanical definitions of MSS, Classic Buy/Sell Model, MMXM, Breaker Block formation/invalidation, MT formation, and what counts as a valid reaction to MT remain to be confirmed from the user's chart examples. H4 SMT remains a mandatory entry filter.
+
 ## Strategy rules supplied directly by the user
 
 ### H4
