@@ -20,7 +20,7 @@ This document defines the strategy the user says corresponds to the supplied bac
 - **Mitigation Block entry requirement:** price must return to the Mitigation Block zone before entry; merely identifying the zone is not sufficient.
 - **Mitigation Block entry trigger:** once price returns to the Mitigation Block zone, enter directly without waiting for an additional M1 OB/Breaker or SMT confirmation, subject to the strategy's other mandatory filters (including mandatory H4 SMT).
 - **Stop-loss:** place the SL slightly beyond the relevant high/low boundary of the Mitigation Block, accounting for spread. The exact buffer formula is still to be defined.
-- **Classic model stop-loss (confirmed):** for a buy, place SL slightly below the OB low; for a sell, place SL slightly above the OB high. Account for spread. The exact buffer formula/multiplier is still to be defined.
+- **Classic model stop-loss (confirmed):** for a buy, place SL slightly below the OB low; for a sell, place SL slightly above the OB high. The user selected a **fixed price-based buffer for gold**, independent of the current spread. The exact numeric buffer in XAUUSD price units remains to be specified. Spread must still be considered for execution/validity checks, but it does not determine this fixed SL buffer.
 - The exact mechanical rules for what qualifies as a large move, how liquidity-taking is identified, how multi-candle OB boundaries are drawn, how an OB is considered invalidated, and how an MMXM/opposite side is detected remain to be confirmed.
 
 ## Market model classification: Classic Buy/Sell Model vs MMXM
