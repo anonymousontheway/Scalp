@@ -37,7 +37,7 @@ The user describes two alternative market behaviors/models. The EA must distingu
 3. After MSS, wait for a pullback to the Breaker Block.
 4. Then identify Mitigation Blocks (MTs) and wait for price reaction to those MT zones before entry.
 
-The user's previously confirmed definition remains applicable: price must return to the Mitigation Block zone; identification alone is not enough. For the MMXM path, entry is based on the reaction to MTs after the MSS → Breaker Block pullback sequence. Do not apply the direct-on-touch MT entry rule without considering this newly specified reaction requirement.
+The user's previously confirmed definition remains applicable: price must return to the Mitigation Block zone; identification alone is not enough. For the MMXM path, after MSS and a pullback to the Breaker Block, identify MT zones and enter when price returns to the relevant MT zone. **No additional reaction confirmation is required.**
 
 The exact mechanical definitions of MSS, Classic Buy/Sell Model, MMXM, Breaker Block formation/invalidation, MT formation, and what counts as a valid reaction to MT remain to be confirmed from the user's chart examples. H4 SMT remains a mandatory entry filter.
 
