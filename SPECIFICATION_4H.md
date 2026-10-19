@@ -31,7 +31,7 @@ The user describes two alternative market behaviors/models. The EA must distingu
 2. On M1, the user waits until after 8:30 and watches price reach the 1:1 proximity level, described in the chart note as related to the midnight level.
 3. The chart note says entry could have been taken after price hit the FVG, but the user waited for an OB to open the position.
 4. The user confirmed that MSS had already formed in this example before the OB-based entry.
-5. For entry timing, use New York midnight (00:00 New York time) as a reference: price above the midnight level is confirmation for a sell; price below the midnight level is confirmation for a buy.
+5. In M1, use the New York midnight level as a reference. The user describes two possible entry patterns around it: (a) price moves above the midnight level and reacts to an existing OB or Mitigation Block; or (b) after price moves above the midnight level, an OB or Mitigation Block forms there. The exact directional interpretation and whether both patterns are valid for both buy/sell setups remain to be clarified.
 6. The general classic model rule is: after MSS, wait for price to return to the OB and enter at the OB retest, subject to the other mandatory strategy filters.
 7. These chart observations are an example, not yet universal numeric rules; exact time zone/DST handling and the OB boundary/trigger still need confirmation.
 
