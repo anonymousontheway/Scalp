@@ -30,8 +30,10 @@ The user describes two alternative market behaviors/models. The EA must distingu
 1. On H4, the user notes SMT between Gold and Silver and waits to see how the current 2:00 a.m. H4 candle develops before deciding on the long idea.
 2. On M1, the user waits until after 8:30 and watches price reach the 1:1 proximity level, described in the chart note as related to the midnight level.
 3. The chart note says entry could have been taken after price hit the FVG, but the user waited for an OB to open the position.
-4. The general classic model rule is: after MSS, wait for price to return to the OB and enter at the OB retest, subject to the other mandatory strategy filters.
-5. These chart observations are an example, not yet universal numeric rules; exact time zone, proximity calculation, and the OB boundary/trigger still need confirmation.
+4. The user confirmed that MSS had already formed in this example before the OB-based entry.
+5. For entry timing, use New York midnight (00:00 New York time) as a reference: price above the midnight level is confirmation for a sell; price below the midnight level is confirmation for a buy.
+6. The general classic model rule is: after MSS, wait for price to return to the OB and enter at the OB retest, subject to the other mandatory strategy filters.
+7. These chart observations are an example, not yet universal numeric rules; exact time zone/DST handling and the OB boundary/trigger still need confirmation.
 
 ### MMXM
 1. Identify the MMXM model.
