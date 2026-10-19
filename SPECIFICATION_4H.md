@@ -27,19 +27,22 @@ This document defines the strategy the user says corresponds to the supplied bac
 The user describes two alternative market behaviors/models. The EA must distinguish and record which model is active; do not merge their entry sequences into one generic setup.
 
 ### Classic Buy/Sell Model
-1. Wait for MSS.
-2. After MSS, wait for price to return to the relevant OB.
-3. Entry is considered at the OB retest, subject to the other mandatory strategy filters.
+1. On H4, the user notes SMT between Gold and Silver and waits to see how the current 2:00 a.m. H4 candle develops before deciding on the long idea.
+2. On M1, the user waits until after 8:30 and watches price reach the 1:1 proximity level, described in the chart note as related to the midnight level.
+3. The chart note says entry could have been taken after price hit the FVG, but the user waited for an OB to open the position.
+4. The general classic model rule is: after MSS, wait for price to return to the OB and enter at the OB retest, subject to the other mandatory strategy filters.
+5. These chart observations are an example, not yet universal numeric rules; exact time zone, proximity calculation, and the OB boundary/trigger still need confirmation.
 
 ### MMXM
 1. Identify the MMXM model.
 2. Wait for MSS.
 3. After MSS, wait for a pullback to the Breaker Block.
-4. Then identify Mitigation Blocks (MTs) and wait for price reaction to those MT zones before entry.
+4. Then identify Mitigation Blocks (MTs).
+5. Entry is taken when price returns to the relevant MT zone; no additional reaction confirmation is required.
 
 The user's previously confirmed definition remains applicable: price must return to the Mitigation Block zone; identification alone is not enough. For the MMXM path, after MSS and a pullback to the Breaker Block, identify MT zones and enter when price returns to the relevant MT zone. **No additional reaction confirmation is required.**
 
-The exact mechanical definitions of MSS, Classic Buy/Sell Model, MMXM, Breaker Block formation/invalidation, MT formation, and what counts as a valid reaction to MT remain to be confirmed from the user's chart examples. H4 SMT remains a mandatory entry filter.
+The exact mechanical definitions of MSS, Classic Buy/Sell Model, MMXM, Breaker Block formation/invalidation, MT formation, the 1:1 proximity level, and the FVG-to-OB entry distinction remain to be confirmed from chart examples. H4 SMT remains a mandatory entry filter.
 
 ## Strategy rules supplied directly by the user
 
