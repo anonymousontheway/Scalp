@@ -10,6 +10,7 @@ This document defines the strategy the user says corresponds to the supplied bac
 - **Target clarification:** the target referred to as PL/DH may be the high or low of the previous **H4** candle. Select by trade direction: a buy targets the previous H4 candle high; a sell targets the previous H4 candle low.
 - **Take-profit (TP):** use the previous H4 candle high for a buy and the previous H4 candle low for a sell.
 - **Classic model TP (confirmed):** use the previous H4 candle high for a buy and the previous H4 candle low for a sell.
+- **TP already reached rule (confirmed):** if the selected TP level (previous H4 candle high for a buy or previous H4 candle low for a sell) has already been reached before entry, reject the setup and do not enter. Do not automatically substitute a farther target.
 
 - **H4 Manipulation Candle:** price breaks a previous high or low, then the candle closes back inside the prior range.
 - **H4 SMT pair:** XAUUSD versus XAGUSD.
