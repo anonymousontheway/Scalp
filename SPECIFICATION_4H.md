@@ -36,6 +36,7 @@ The user describes two alternative market behaviors/models. The EA must distingu
 6. The general classic model rule is: after MSS, wait for price to return to the OB. **Entry trigger (confirmed):** enter after a 1-minute candle closes in the direction of the intended trade (bullish candle for a buy, bearish candle for a sell) following the OB retest. Candle color/direction alone is sufficient; the candle does not need to close fully outside the OB, and engulfing is not required. Other mandatory strategy filters still apply.
 7. **Missed-pullback rule (confirmed):** if price does not return to the identified OB after MSS and moves away without a retest, do not enter or chase price. Mark/log the setup as missed.
 8. **No immediate invalidation on first candle (confirmed):** if price retests the OB but the first 1-minute candle does not close in the trade direction, keep waiting for a directional 1-minute candle close, provided the setup remains valid and other mandatory filters still hold. No maximum waiting-candle count has been specified yet.
+9. **OB invalidation rule (confirmed):** if price crosses the boundary that keeps the setup valid after the OB retest, invalidate the setup and do not enter. The exact boundary/price rule for invalidation must be defined mechanically before coding; do not invent it.
 7. These chart observations are an example, not yet universal numeric rules; exact time zone/DST handling and the OB boundary/trigger still need confirmation.
 
 ### MMXM
