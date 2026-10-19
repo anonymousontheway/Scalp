@@ -11,6 +11,7 @@ This document defines the strategy the user says corresponds to the supplied bac
 - **Take-profit (TP):** use the previous H4 candle high for a buy and the previous H4 candle low for a sell.
 - **Classic model TP (confirmed):** use the previous H4 candle high for a buy and the previous H4 candle low for a sell.
 - **TP already reached rule (confirmed):** if the selected TP level (previous H4 candle high for a buy or previous H4 candle low for a sell) has already been reached before entry, reject the setup and do not enter. Do not automatically substitute a farther target.
+- **Minimum risk/reward filter (confirmed):** if the projected reward-to-risk ratio from planned entry to the selected TP versus entry to SL is below 1:1, reject the setup. A ratio of exactly 1:1 meets this minimum. Calculate using the actual planned entry, SL, and TP prices before submitting the order.
 
 - **H4 Manipulation Candle:** price breaks a previous high or low, then the candle closes back inside the prior range.
 - **H4 SMT pair:** XAUUSD versus XAGUSD.
