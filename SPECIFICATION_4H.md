@@ -33,7 +33,7 @@ The user describes two alternative market behaviors/models. The EA must distingu
 4. The user confirmed that MSS had already formed in this example before the OB-based entry.
 5. In M1, use the New York midnight level as a directional filter: price above the midnight level is for sell setups; price below the midnight level is for buy setups.
 6. Around this level, two entry patterns are possible: (a) price crosses above/below midnight and reaches/reacts at an already-existing OB or Mitigation Block; or (b) after crossing the level, an OB or Mitigation Block forms there. The user has confirmed the direction mapping, but has not said that both patterns must occur in every trade.
-6. The general classic model rule is: after MSS, wait for price to return to the OB. **Entry trigger (confirmed):** enter only after a 1-minute candle closes in the direction of the intended trade following the OB retest. A mere touch of the OB is not sufficient, and this rule does not add a separate structure confirmation beyond the directional candle close. Other mandatory strategy filters still apply.
+6. The general classic model rule is: after MSS, wait for price to return to the OB. **Entry trigger (confirmed):** enter after a 1-minute candle closes in the direction of the intended trade (bullish candle for a buy, bearish candle for a sell) following the OB retest. Candle color/direction alone is sufficient; the candle does not need to close fully outside the OB, and engulfing is not required. Other mandatory strategy filters still apply.
 7. These chart observations are an example, not yet universal numeric rules; exact time zone/DST handling and the OB boundary/trigger still need confirmation.
 
 ### MMXM
