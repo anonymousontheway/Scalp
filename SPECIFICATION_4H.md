@@ -265,3 +265,10 @@ Do not invent definitions and label them as the user's rules. Use the supplied c
 ## Daily entry cap confirmation
 
 - The user confirmed retaining the existing limit of a maximum of **3 successful entries per broker-server day**. Apply this cap across the strategy models and any re-entries; do not exceed three entries in that day. Other daily risk limits remain active.
+
+
+## Daily loss limit behavior (confirmed)
+
+- When daily loss reaches 2.0%, stop opening new entries for the rest of the broker-server day.
+- Do **not** automatically close positions that are already open solely because the daily loss limit has been reached; manage them under their existing SL/TP and trade-management rules.
+- Other risk protections and setup-level invalidation rules remain active.
