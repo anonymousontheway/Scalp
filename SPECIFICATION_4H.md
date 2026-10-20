@@ -205,3 +205,9 @@ Do not invent definitions and label them as the user's rules. Use the supplied c
 - For the MMXM model, MT respect means price reaches the MT zone and an M1 candle reacts away from the zone and closes in the intended trade direction. A bullish M1 close is required for Buy; a bearish M1 close is required for Sell.
 - If this directional reaction/close does not occur and the MT is not respected, invalidate the setup; do not wait for a later return to reuse the same MT. The setup must remain valid and all other mandatory filters must still pass before entry.
 - Any more detailed numeric/candle-structure test for MT respect is not specified yet and must not be invented without chart-backed confirmation.
+
+
+## MMXM stop-loss placement (confirmed)
+
+- For the MMXM model, place the stop loss slightly beyond the relevant MT boundary: for a Buy, below the MT zone; for a Sell, above the MT zone.
+- The exact numeric buffer beyond the MT boundary remains undefined and must be confirmed before implementation. Do not automatically reuse the Classic model's fixed 0.50 XAUUSD buffer for MMXM unless the user explicitly confirms that it also applies here.
