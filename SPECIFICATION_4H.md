@@ -198,3 +198,10 @@ Do not invent definitions and label them as the user's rules. Use the supplied c
 - For an MMXM entry, price must demonstrate respect for the identified Mitigation Block (MT) before entry; merely touching or returning to the MT is not enough. Entry still requires an M1 candle to close in the intended trade direction while the setup remains valid.
 - If price does not respect the MT, the MMXM setup is invalidated and must be rejected. Do not wait for price to return again and do not enter from that invalidated MT.
 - The precise mechanical definition of MT “respect” (the objective price/candle behavior that distinguishes respect from violation) remains to be defined from the user's chart examples before coding; do not invent it.
+
+
+## Objective MT respect confirmation (confirmed)
+
+- For the MMXM model, MT respect means price reaches the MT zone and an M1 candle reacts away from the zone and closes in the intended trade direction. A bullish M1 close is required for Buy; a bearish M1 close is required for Sell.
+- If this directional reaction/close does not occur and the MT is not respected, invalidate the setup; do not wait for a later return to reuse the same MT. The setup must remain valid and all other mandatory filters must still pass before entry.
+- Any more detailed numeric/candle-structure test for MT respect is not specified yet and must not be invented without chart-backed confirmation.
