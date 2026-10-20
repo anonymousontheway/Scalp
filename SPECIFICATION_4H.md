@@ -19,6 +19,7 @@ This document defines the strategy the user says corresponds to the supplied bac
 - **H4 SMT pair:** XAUUSD versus XAGUSD.
 - **SMT definition:** one instrument fails to confirm the corresponding high/low made by the other instrument (non-confirmation of a corresponding swing high/low).
 - **H4 SMT is mandatory for entry.** If the H4 SMT condition is absent, no entry is allowed.
+- **Opposite-pair target hard veto (confirmed):** if XAGUSD (Silver) has already reached its relevant target before the planned XAUUSD (Gold) entry, reject the Gold setup completely, even if all other Gold setup conditions are satisfied. Do not treat this as conditional on whether SMT remains valid.
 - **Order Block (OB), based on the user's explanation:** for a buy, the last bearish candle before a large bullish move; for a sell, the last bullish candle before a large bearish move. **Liquidity-taking for OB validity (confirmed):** liquidity can be taken from highs/lows and FVGs. Taking liquidity is part of the OB definition, not an optional extra filter: a candidate that has not taken liquidity from a relevant high/low or FVG is not a valid OB. An OB may consist of one candle or a group of candles.
 - **Breaker Block, based on the user's explanation:** the last OB that drove price toward liquidity and was subsequently invalidated.
 - **Mitigation Block, based on the user's explanation:** an OB located on the opposite side of an MMXM; support or resistance is expected from this zone.
