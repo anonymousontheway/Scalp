@@ -70,7 +70,7 @@ The exact mechanical definitions of MSS, Classic Buy/Sell Model, MMXM, Breaker B
 - Look for **MT/OB**.
 - Look for **MMXM**.
 - Consider **midnight or Proximity** for entry.
-- Trade **after news and 8:30**.
+- Trade **after 8:30 a.m. New York time (mandatory even without news) and after relevant news**.
 - Check the **opposite pair** too, and determine whether it has hit its TP or not.
 
 These are the user's terms. Do not silently expand or redefine P/D, PL/DH, Proximity, MT, or MMXM. Their exact mechanical definitions must be agreed from the user's examples or later instructions before being encoded as hard entry rules.
@@ -104,7 +104,7 @@ These notes are examples and observations, not proof of profitability or a unive
 
 ## News and timing
 
-- The user says: “Trade after news and 8:30.” This indicates post-news / 8:30 timing is relevant; it does not yet define an exact number of minutes before/after news or whether every news event is included.
+- **Mandatory 8:30 New York time gate (confirmed):** no entry is allowed before 8:30 a.m. New York time, even when no news event is scheduled. Treat 8:30 as an independent mandatory time condition, not merely a news filter. Handle New York daylight-saving time and broker-server time explicitly. The separate “after news” requirement remains applicable, but the news-event scope and post-news waiting interval are still undefined.
 - The journal contains NY KZ, LO KZ and LO Close KZ references. These should be treated as observations for testing, not a universal session restriction without confirmation.
 - Record H4 candle open/close times and the timezone used. New York DST and broker server time must be handled explicitly if New York time is intended.
 - Do not claim a news filter is active unless the EA has a reliable, implemented news source and tested event-time logic.
