@@ -29,7 +29,7 @@ This document defines the strategy the user says corresponds to the supplied bac
 - **Breaker Block, based on the user's explanation:** the last OB that drove price toward liquidity and was subsequently invalidated.
 - **Mitigation Block, based on the user's explanation:** an OB located on the opposite side of an MMXM; support or resistance is expected from this zone.
 - **Mitigation Block entry requirement:** price must return to the Mitigation Block zone before entry; merely identifying the zone is not sufficient.
-- **Mitigation Block entry trigger:** once price returns to the Mitigation Block zone, enter directly without waiting for an additional M1 OB/Breaker or SMT confirmation, subject to the strategy's other mandatory filters (including mandatory H4 SMT).
+- **Mitigation Block entry trigger for MMXM (updated by latest confirmation):** after the MMXM sequence reaches a valid MT retest, do not enter immediately. Wait for an M1 candle to close in the intended trade direction (bullish for Buy, bearish for Sell), while the setup remains valid and other mandatory filters hold. No extra OB formation is required.
 - **Stop-loss:** place the SL slightly beyond the relevant high/low boundary of the Mitigation Block, accounting for spread. The exact buffer formula is still to be defined.
 - **Classic model stop-loss (confirmed):** for a buy, place SL slightly below the OB low; for a sell, place SL slightly above the OB high. The user approved a **fixed buffer of 0.50 in XAUUSD price units**, independent of the current spread. For example, if a buy OB low is 4300.00, place SL at 4299.50; for a sell, place SL 0.50 above the OB high. Spread must still be considered for execution/validity checks, but it does not determine this fixed SL buffer.
 - **Classic M1 entry confirmation (confirmed):** after MSS and a retest of the identified OB, enter when an M1 candle closes in the intended trade direction: bullish close/candle for Buy, bearish close/candle for Sell. Candle direction alone is sufficient; it does not need to close outside the OB, and an engulfing pattern is not required, provided the setup remains valid and price is still within the OB entry zone.
@@ -57,9 +57,9 @@ The user describes two alternative market behaviors/models. The EA must distingu
 2. Wait for MSS.
 3. After MSS, wait for a pullback to the Breaker Block.
 4. Then identify Mitigation Blocks (MTs).
-5. Entry is taken when price returns to the relevant MT zone; no additional reaction confirmation is required.
+5. Entry is considered only after price returns to the relevant MT zone and an M1 candle closes in the intended trade direction (bullish for Buy, bearish for Sell).
 
-The user's previously confirmed definition remains applicable: price must return to the Mitigation Block zone; identification alone is not enough. For the MMXM path, after MSS and a pullback to the Breaker Block, identify MT zones and enter when price returns to the relevant MT zone. **No additional reaction confirmation is required.**
+The user's previously confirmed definition remains applicable: price must return to the Mitigation Block zone; identification alone is not enough. For the MMXM path, after MSS and a pullback to the Breaker Block, identify MT zones. When price returns to the relevant MT zone, wait for an M1 candle close in the intended trade direction before entering. This latest confirmation supersedes the earlier direct-entry/no-reaction-confirmation rule.
 
 The exact mechanical definitions of MSS, Classic Buy/Sell Model, MMXM, Breaker Block formation/invalidation, MT formation, the 1:1 proximity level, and the FVG-to-OB entry distinction remain to be confirmed from chart examples. H4 SMT remains a mandatory entry filter.
 
