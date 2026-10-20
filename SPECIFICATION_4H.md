@@ -232,3 +232,9 @@ Do not invent definitions and label them as the user's rules. Use the supplied c
 - If an MMXM position reaches a 1:1 reward-to-risk level before reaching the selected previous-H4-candle target, close part of the position and leave the remainder open toward the H4 target.
 - The full position's final target remains previous H4 candle high for Buy and previous H4 candle low for Sell. The existing rule to reject a setup if that target was already reached before entry remains in force.
 - The exact partial-close fraction at 1:1 has not yet been specified; do not assume a percentage until the user confirms it.
+
+
+## MMXM partial-close percentage at 1:1 (confirmed)
+
+- When the MMXM position reaches 1:1 reward-to-risk, close **50% of the position** and keep the remaining 50% open toward the selected previous-H4-candle target.
+- The remaining position's final target is previous H4 candle high for Buy and previous H4 candle low for Sell. All existing setup validity and target-before-entry rules remain in force.
