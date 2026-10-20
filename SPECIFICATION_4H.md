@@ -6,6 +6,7 @@ This document defines the strategy the user says corresponds to the supplied bac
 
 ## Confirmed definitions from follow-up answers
 - **P/D means Premium / Discount:** determine whether price is in the upper or lower half of the dealing range.
+- **P/D directional entry filter (confirmed):** Buy setups are allowed only when price is in the Discount half of the selected valid H4 dealing range; Sell setups are allowed only when price is in the Premium half. If price is in the wrong half for the intended direction, reject the setup even if other conditions are met.
 - **Dealing Range selection:** use the larger, valid dealing range identified from H4 market structure. The exact mechanical criteria for selecting its boundaries remain to be defined. The user has confirmed this is the preferred basis for P/D; do not substitute the previous candle range or simply the latest swing high/low. The exact mechanical criteria for selecting its boundaries remain to be defined.
 - **Target clarification:** the target referred to as PL/DH may be the high or low of the previous **H4** candle. Select by trade direction: a buy targets the previous H4 candle high; a sell targets the previous H4 candle low.
 - **Take-profit (TP):** use the previous H4 candle high for a buy and the previous H4 candle low for a sell.
