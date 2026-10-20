@@ -191,3 +191,10 @@ Do not invent definitions and label them as the user's rules. Use the supplied c
 - After price returns to the identified Mitigation Block (MT) zone, if the first M1 candle does not close in the intended trade direction, continue waiting for a later M1 candle to close in that direction.
 - Do not reject solely because the first M1 candle is non-directional. Keep the setup eligible only while the original setup remains valid, price remains within the MT zone, and all mandatory filters continue to hold.
 - If price leaves the MT zone before a qualifying directional M1 close, do not chase the move; the entry opportunity is missed. No maximum number of M1 candles is imposed while price remains in the MT zone and the setup remains valid.
+
+
+## MMXM Mitigation Block respect and invalidation (confirmed)
+
+- For an MMXM entry, price must demonstrate respect for the identified Mitigation Block (MT) before entry; merely touching or returning to the MT is not enough. Entry still requires an M1 candle to close in the intended trade direction while the setup remains valid.
+- If price does not respect the MT, the MMXM setup is invalidated and must be rejected. Do not wait for price to return again and do not enter from that invalidated MT.
+- The precise mechanical definition of MT “respect” (the objective price/candle behavior that distinguishes respect from violation) remains to be defined from the user's chart examples before coding; do not invent it.
