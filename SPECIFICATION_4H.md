@@ -16,6 +16,7 @@ This document defines the strategy the user says corresponds to the supplied bac
 - **OB selection when multiple candidates exist (confirmed):** choose the valid OB closest to the current price, subject to all other validity and entry filters.
 
 - **H4 Manipulation Candle:** price breaks a previous high or low, then the candle closes back inside the prior range.
+- **Both-side sweep rejection (confirmed):** if an H4 candle breaks both the high and low of the immediately previous H4 candle and then closes back inside that previous candle’s range, reject the setup entirely. Do not infer direction from the close location or other filters.
 - **H4 SMT pair:** XAUUSD versus XAGUSD.
 - **SMT definition:** one instrument fails to confirm the corresponding high/low made by the other instrument (non-confirmation of a corresponding swing high/low).
 - **H4 SMT is mandatory for entry.** If the H4 SMT condition is absent, no entry is allowed.
