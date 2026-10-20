@@ -218,3 +218,10 @@ Do not invent definitions and label them as the user's rules. Use the supplied c
 - The user selected a fixed buffer of **0.50 XAUUSD price units** beyond the MT boundary for the MMXM model, independent of the current spread.
 - Buy: SL = lower boundary of MT minus 0.50. Sell: SL = upper boundary of MT plus 0.50.
 - Spread must still be considered for execution/validity checks, but it does not change this fixed SL buffer.
+
+
+## MMXM take-profit execution (confirmed)
+
+- For an entered MMXM trade, close the entire position at the selected previous-H4-candle target: previous H4 candle high for Buy, previous H4 candle low for Sell.
+- Do not use a partial close at this target; the user's choice is to exit the full position.
+- The existing pre-entry rule remains: if the selected target was already reached before entry, reject the setup rather than entering late or substituting a farther target.
