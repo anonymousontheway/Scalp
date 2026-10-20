@@ -184,3 +184,10 @@ The supplied notes do not yet define these mechanically:
 10. Exact cutoff that defines an entry as “too late”.
 
 Do not invent definitions and label them as the user's rules. Use the supplied chart examples to infer candidate definitions only when clearly supported, document each assumption, and keep it configurable until confirmed.
+
+
+## Latest MMXM MT-retest waiting rule (confirmed)
+
+- After price returns to the identified Mitigation Block (MT) zone, if the first M1 candle does not close in the intended trade direction, continue waiting for a later M1 candle to close in that direction.
+- Do not reject solely because the first M1 candle is non-directional. Keep the setup eligible only while the original setup remains valid, price remains within the MT zone, and all mandatory filters continue to hold.
+- If price leaves the MT zone before a qualifying directional M1 close, do not chase the move; the entry opportunity is missed. No maximum number of M1 candles is imposed while price remains in the MT zone and the setup remains valid.
