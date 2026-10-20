@@ -253,3 +253,10 @@ Do not invent definitions and label them as the user's rules. Use the supplied c
 - Move the stop loss on the remaining 50% to the original entry price (break-even).
 - Keep the remaining position open toward the selected previous-H4-candle target: previous H4 candle high for Buy, previous H4 candle low for Sell, unless stopped at break-even.
 - This is a trade-management rule after entry; it does not change the minimum 1:1 projected reward-to-risk filter or the rule rejecting a setup if its selected target has already been reached before entry.
+
+
+## Re-entry after break-even exit (confirmed)
+
+- The user allows a new entry after the remaining position has been stopped at break-even, but only if **all entry conditions are valid again**.
+- This is not an automatic re-entry and does not waive any mandatory filters, setup validity rules, target-not-yet-reached checks, opposite-pair veto, timing/news gates, or risk limits.
+- The exact maximum number of entries per single setup is not separately defined here; existing account/day risk safeguards remain in force.
