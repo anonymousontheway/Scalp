@@ -260,3 +260,8 @@ Do not invent definitions and label them as the user's rules. Use the supplied c
 - The user allows a new entry after the remaining position has been stopped at break-even, but only if **all entry conditions are valid again**.
 - This is not an automatic re-entry and does not waive any mandatory filters, setup validity rules, target-not-yet-reached checks, opposite-pair veto, timing/news gates, or risk limits.
 - The exact maximum number of entries per single setup is not separately defined here; existing account/day risk safeguards remain in force.
+
+
+## Daily entry cap confirmation
+
+- The user confirmed retaining the existing limit of a maximum of **3 successful entries per broker-server day**. Apply this cap across the strategy models and any re-entries; do not exceed three entries in that day. Other daily risk limits remain active.
