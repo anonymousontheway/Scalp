@@ -238,3 +238,9 @@ Do not invent definitions and label them as the user's rules. Use the supplied c
 
 - When the MMXM position reaches 1:1 reward-to-risk, close **50% of the position** and keep the remaining 50% open toward the selected previous-H4-candle target.
 - The remaining position's final target is previous H4 candle high for Buy and previous H4 candle low for Sell. All existing setup validity and target-before-entry rules remain in force.
+
+
+## MMXM stop-loss after partial close (confirmed)
+
+- After the MMXM position reaches 1:1 reward-to-risk and 50% of the position is closed, move the stop loss on the remaining 50% to the original entry price (break-even).
+- The remaining position continues toward the selected previous-H4-candle target unless stopped at break-even. Broker execution, commissions, and swap may mean the realized net result is not exactly zero even when SL is at entry price.
