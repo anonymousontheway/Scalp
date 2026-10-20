@@ -211,3 +211,10 @@ Do not invent definitions and label them as the user's rules. Use the supplied c
 
 - For the MMXM model, place the stop loss slightly beyond the relevant MT boundary: for a Buy, below the MT zone; for a Sell, above the MT zone.
 - The exact numeric buffer beyond the MT boundary remains undefined and must be confirmed before implementation. Do not automatically reuse the Classic model's fixed 0.50 XAUUSD buffer for MMXM unless the user explicitly confirms that it also applies here.
+
+
+## MMXM stop-loss buffer (confirmed)
+
+- The user selected a fixed buffer of **0.50 XAUUSD price units** beyond the MT boundary for the MMXM model, independent of the current spread.
+- Buy: SL = lower boundary of MT minus 0.50. Sell: SL = upper boundary of MT plus 0.50.
+- Spread must still be considered for execution/validity checks, but it does not change this fixed SL buffer.
