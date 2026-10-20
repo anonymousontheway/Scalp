@@ -225,3 +225,10 @@ Do not invent definitions and label them as the user's rules. Use the supplied c
 - For an entered MMXM trade, close the entire position at the selected previous-H4-candle target: previous H4 candle high for Buy, previous H4 candle low for Sell.
 - Do not use a partial close at this target; the user's choice is to exit the full position.
 - The existing pre-entry rule remains: if the selected target was already reached before entry, reject the setup rather than entering late or substituting a farther target.
+
+
+## MMXM partial profit at 1:1 R:R (confirmed)
+
+- If an MMXM position reaches a 1:1 reward-to-risk level before reaching the selected previous-H4-candle target, close part of the position and leave the remainder open toward the H4 target.
+- The full position's final target remains previous H4 candle high for Buy and previous H4 candle low for Sell. The existing rule to reject a setup if that target was already reached before entry remains in force.
+- The exact partial-close fraction at 1:1 has not yet been specified; do not assume a percentage until the user confirms it.
