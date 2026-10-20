@@ -244,3 +244,12 @@ Do not invent definitions and label them as the user's rules. Use the supplied c
 
 - After the MMXM position reaches 1:1 reward-to-risk and 50% of the position is closed, move the stop loss on the remaining 50% to the original entry price (break-even).
 - The remaining position continues toward the selected previous-H4-candle target unless stopped at break-even. Broker execution, commissions, and swap may mean the realized net result is not exactly zero even when SL is at entry price.
+
+
+## Universal partial profit and break-even rule (confirmed)
+
+- The user confirmed that the MMXM management rule applies to **all strategy models**, including Classic Buy/Sell and MMXM.
+- At 1:1 reward-to-risk, close 50% of the position.
+- Move the stop loss on the remaining 50% to the original entry price (break-even).
+- Keep the remaining position open toward the selected previous-H4-candle target: previous H4 candle high for Buy, previous H4 candle low for Sell, unless stopped at break-even.
+- This is a trade-management rule after entry; it does not change the minimum 1:1 projected reward-to-risk filter or the rule rejecting a setup if its selected target has already been reached before entry.
