@@ -272,3 +272,77 @@ Do not invent definitions and label them as the user's rules. Use the supplied c
 - When daily loss reaches 2.0%, stop opening new entries for the rest of the broker-server day.
 - Do **not** automatically close positions that are already open solely because the daily loss limit has been reached; manage them under their existing SL/TP and trade-management rules.
 - Other risk protections and setup-level invalidation rules remain active.
+
+
+---
+
+# User-provided ICT glossary and chart notes (2026-10-29)
+
+This section records the definitions supplied directly by the user. Preserve the user's terminology; do not silently replace it with generic definitions. The chart images were reviewed in the conversation, but actual image files are not embedded in this Markdown section yet.
+
+## Order Block (OB)
+An OB is described as a price area where large institutional/bank buy or sell orders are placed. A bullish/buy OB is the last bearish candle before a large bullish move; a bearish/sell OB is the last bullish candle before a large bearish move. Only OBs that have taken liquidity matter. An OB may consist of one candle or a group of candles. The exact algorithmic definition of a “large move,” liquidity-taking and multi-candle boundaries remains open.
+
+## Breaker Block
+The user's definition: the last OB that drove price toward a liquidity target and was subsequently invalidated. The exact algorithmic invalidation criteria and zone boundaries must not be invented.
+
+## Mitigation Block (MT)
+Order Blocks on the opposite side of an MMXM are considered MTs; support or resistance is expected from these zones. The user's chart shows MT areas alongside a Breaker, SMT and Sell Side Liquidity. For MMXM entry, existing confirmed rules still apply: price must return to the MT, react away and close on M1 in the intended direction while the setup remains valid. How to mechanically identify the “opposite side” of MMXM remains open.
+
+## Dealing Range
+The user describes a Dealing Range as forming when price breaks a high and a low and establishes new valid high/low boundaries. The area between those boundaries is the trading range. The supplied chart labels Dealing Range High/Low, BSL and SSL. Exact mechanical criteria for valid boundaries and selecting the relevant/larger range remain unresolved; do not substitute an arbitrary recent candle range.
+
+## Manipulation and Continuation Purge
+A form of Manipulation occurs within the trend of an MMXM, generally inside MT zones; afterward, Distribution is expected in the direction of the MMXM. Continuation Purge is reviewed on structural/ITP timeframes H1 and M15. Manipulation can occur as a Judas Swing during sessions or outside those windows. This is model context, not a standalone entry trigger. Mechanical criteria for a valid purge and distribution confirmation remain open.
+
+## MMXM completion and Accumulation
+Accumulation is the first stage and the target area (labelled “Original Consolidation” in the supplied chart). The MMXM is considered complete after price reaches this Accumulation area. Do not mark the model complete solely because Manipulation or Distribution occurred.
+
+## PD Array
+PD Arrays are levels/areas where a price reaction is expected. The user's list includes:
+- Order Blocks
+- FVG / Volume Imbalance / Opening Gaps / Gaps
+- Breaker Blocks
+- Mitigation Blocks
+
+PD Array membership alone is not an entry signal.
+
+## Fair Value Gap (FVG)
+An FVG is an imbalance among three consecutive candles:
+- Bullish FVG: a gap between the first candle's high and the third candle's low that the middle candle did not cover.
+- Bearish FVG: the corresponding gap between the first candle's low and the third candle's high.
+The user expects price may return to fill some or all of the imbalance.
+
+**Critical entry restriction:** an FVG alone is never sufficient to trigger an entry. On the entry timeframe, an FVG must belong to the structure of a valid **MMXM or Classic Buy/Sell Model**. Either one valid model is enough; both need not exist simultaneously. If an FVG exists without a valid model structure, reject the entry.
+
+## FVG Inversion
+An Inversion is described as the last FVG of the relevant trend that price reaches while taking liquidity and then subsequently violates/ignores. Not every violated FVG is an Inversion. Merely detecting price crossing an FVG is insufficient; trend context and liquidity-taking matter. Exact mechanical criteria remain open.
+
+## Sell Side Liquidity (SSL)
+SSL is liquidity gathered below previous lows. Traders may place stop losses for buy positions below prior lows; when price reaches those lows, the stops trigger and can contribute to the next move. In the supplied example, price takes SSL and then moves toward higher targets.
+
+## Buy Side Liquidity (BSL)
+BSL is liquidity gathered above previous highs. This includes stop losses of traders in short positions and buy orders waiting to be activated above highs. When price trades through those highs, these orders may activate and influence subsequent price action.
+
+## Chart examples received
+The user supplied examples for:
+- OB and Buy Side Liquidity
+- Breaker Block and Buy Side Liquidity
+- Mitigation Block, Breaker, SMT and Sell Side Liquidity
+- Dealing Range High/Low with BSL and SSL
+- Manipulation / Continuation Purge in a Breaker/MT context
+- Original Consolidation / Accumulation as the MMXM completion target
+- FVG Inversion with SSL
+- SSL taken before a move toward higher targets
+- BSL above previous highs and SSL below previous lows
+- Three-candle Fair Value Gap
+
+The examples are the source material for these definitions. Actual image binaries still need to be added as repository assets if they are to display directly in GitHub; this commit records the text and inventory, not image uploads.
+
+## Implementation principles
+1. Keep Classic Buy/Sell and MMXM as separate paths.
+2. Identify a valid model before considering an entry.
+3. FVG is contextual within a valid model, not an independent entry trigger.
+4. OB validity requires taking relevant liquidity.
+5. Breaker, MT, Inversion, Manipulation/Purge and Dealing Range need objective, testable definitions where this document marks them unresolved.
+6. Keep confirmed source-derived rules distinct from assumptions. Do not claim the EA implements a rule until code and testing demonstrate it.
