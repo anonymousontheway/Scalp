@@ -186,6 +186,14 @@ The supplied notes do not yet define these mechanically:
 Do not invent definitions and label them as the user's rules. Use the supplied chart examples to infer candidate definitions only when clearly supported, document each assumption, and keep it configurable until confirmed.
 
 
+## M.T.G / Mitigation-zone candle boundaries (confirmed 2026-10-30)
+
+- The user confirmed that an M.T.G zone uses the **entire range of its constituent candle(s)**: candle body and both wicks.
+- For a single-candle zone: upper boundary = candle High; lower boundary = candle Low.
+- For a multi-candle zone: upper boundary = maximum High across the selected constituent candles; lower boundary = minimum Low across those candles.
+- Do not use body-only Open/Close bounds and do not replace the zone with a 50% midpoint line.
+- This confirmation defines how to calculate the bounds **after** the constituent candle(s) have been identified. It does not yet define the mechanical rule for choosing which candles belong to an M.T.G; that selection must remain separate and unresolved until chart-backed rules are supplied.
+
 ## Latest MMXM MT-retest waiting rule (confirmed)
 
 - After price returns to the identified Mitigation Block (MT) zone, if the first M1 candle does not close in the intended trade direction, continue waiting for a later M1 candle to close in that direction.
